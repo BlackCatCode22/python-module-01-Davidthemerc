@@ -1,25 +1,40 @@
 # Prompt the user for weekly hours worked and hourly rate
-weeklyHours = float(input("Weekly hours worked? "))
-hourlyRate = float(input("Hourly pay rate? "))
+weeklyHours = input("Weekly hours worked? ")
 
-# Calculate gross pay
-grossPay = weeklyHours * hourlyRate
-grossPay = round(grossPay, 2)
+try:
+    hourlyRate = input("Hourly pay rate? ")
 
-# If user worked more than 40 hours in the week, calculate overtime pay
-if weeklyHours > 40:
-    grossPay = hourlyRate * 40
-    overHours = weeklyHours - 40
-    overPay = overHours * (hourlyRate * 1.5)
-    grossPay += overPay
-    overPay = str(overPay)
+    try:
 
-# Stringify gross pay
-grossPay = str(grossPay)
+        # Convert string values to float
+        weeklyHours = float(weeklyHours)
+        hourlyRate = float(hourlyRate)
 
+        # Calculate gross pay
+        grossPay = weeklyHours * hourlyRate
 
-# Print gross pay
-if weeklyHours > 40:
-    print("Your gross pay is: $" + grossPay + ". This includes $" + overPay + " of overtime pay.")
-else:
-    print("Your gross pay is: $" + grossPay)
+        # If user worked more than 40 hours in the week, calculate overtime pay
+        if weeklyHours > 40:
+            grossPay = hourlyRate * 40
+            overHours = weeklyHours - 40
+            overPay = overHours * (hourlyRate * 1.5)
+            grossPay += overPay
+            overPay = str(overPay)
+
+        # Round pay
+        grossPay = round(grossPay, 2)
+
+        # Stringify gross pay
+        grossPay = str(grossPay)
+
+        # Print gross pay
+        if weeklyHours > 40:
+            print("Your gross pay is: $" + grossPay + ". This includes $" + overPay + " of overtime pay.")
+        else:
+            print("Your gross pay is: $" + grossPay)
+
+    except:
+        print("Please enter numbers only.")
+
+except:
+    print("Please enter numbers only.")
